@@ -1,0 +1,51 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+     </button>
+        <div class="card-avatar">
+          <a routerLink="/-/home">
+            <img class="img" width='60' height='60' src="/assets/images/logo.png" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navigation-example">
+      <ul class="nav navbar-nav navbar-right">
+         <li *ngIf="userDetails" class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+               Welcome {{userDetails.fullName.split(' ')[0]}}<b class="caret"></b>
+             </a>
+             <div class="dropdown-menu">
+                 <li><a routerLink="/-/profile">View Profile</a></li>
+                 <li><a routerLink="/-/bookinghistory">View Order History</a></li>
+                 <hr>
+                 <li><a (click)="onLogout()">Log Out</a></li>
+             </div>
+           </li>
+         <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+               Food<b class="caret"></b>
+             </a>
+             <div class="dropdown-menu">
+               <li *ngFor="let cat of category"><a (click)="onFood(cat.categoryname)">{{cat.categoryname}}</a></li>
+             </div>
+           </li>
+        <li class="active"><a routerLink="/-/home"><i class="material-icons">home</i>Home</a></li>
+        <li><a routerLink="/-/about-us"><i class="material-icons">about</i>About</a></li>
+        <li><a routerLink="/-/contact-us"><i class="material-icons">contact</i>Contact</a></li>
+       <li>&nbsp;&nbsp;</li>
+       <li>
+        <li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

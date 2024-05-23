@@ -1,0 +1,55 @@
+
+<div class="main main-raised">
+  <div class="section">
+    <div class="row"></div>
+<div class="container" >
+</div>
+</div>
+</div>
+<div class="main main-raised">
+  <div class="section">
+<div class="container">
+<div class="row">
+  <div class="col-md-4" *ngFor="let food of foods;let i = index">
+    <div class="card card-testimonial" >
+        <div class="card-image">
+          <a>
+            <img class="img" [src]="getSafeUrl(food.fpic)">
+          </a>
+        </div>
+        <div class="content">
+          <h6 class="category text-info">{{food.category_id}}</h6>
+          <h4 class="card-title">
+              {{food.fname}}
+              <!-- {{i}}
+              {{message}} -->
+          </h4>
+          <p class="card-description">
+              {{food.fdesc}}
+          </p>
+        </div>
+        <div class="footer">
+          <div class="row">
+            <div class="col-md-5">
+            <div class="price">
+<h4>₹{{food.fprice}}</h4>
+<!-- <button class="btn btn-primary btn-round" (click)='newMessage()'>Send Data</button> -->
+</div>
+</div>
+<div class="col-md-2">
+</div>
+<div class="col-md-5">
+          <div class="stats">
+<button class="btn btn-primary btn-round" (click)='onBook(food._id)'>Add to Cart</button>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+  </div>
+  </div>
+  <app-footer></app-footer>
+  <router-outlet></router-outlet>
