@@ -26,7 +26,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { FileDropDirective, FileSelectDirective, FileUploadModule, FileUploader } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -54,7 +53,6 @@ import { FileDropDirective, FileSelectDirective, FileUploadModule, FileUploader 
     FormsModule,
     RouterModule,
     HttpClientModule,
-    FileUploadModule
   ],
   providers: [
     {
