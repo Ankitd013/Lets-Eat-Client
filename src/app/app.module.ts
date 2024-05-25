@@ -1,10 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FileSelectDirective } from 'ng2-file-upload';
-import {DatePipe} from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +22,11 @@ import {BookhistoryComponent} from './userprofile/bookhistory/bookhistory.compon
 import { AllfoodComponent } from './allfood/allfood.component';
 import { UallfoodComponent } from './userprofile/uallfood/uallfood.component';
 import { UfoodComponent } from './userprofile/ufood/ufood.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { FileDropDirective, FileSelectDirective, FileUploadModule, FileUploader } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { UfoodComponent } from './userprofile/ufood/ufood.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    FileSelectDirective,
     UserprofileComponent,
     CartComponent,
     ProfileComponent,
@@ -54,7 +53,8 @@ import { UfoodComponent } from './userprofile/ufood/ufood.component';
     AppRoutingModule,
     FormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    FileUploadModule
   ],
   providers: [
     {

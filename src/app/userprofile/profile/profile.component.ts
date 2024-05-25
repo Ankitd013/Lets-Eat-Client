@@ -9,27 +9,31 @@ import { ReguserService } from '../../shared/reguser.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  public users = [];
+  public users:any = [];
   userDetails;
   constructor(private fs: FoodService,private uservice: VwuserService,private userService: ReguserService,) { }
 message: string;
   ngOnInit() {
-    this.userService.getUserProfile().subscribe(
-      res => {
-        this.userDetails = res['reguser'];
-      },
-      err => {
-        console.log(err);
 
+    this.userService.getUserProfile().subscribe({
+      next: (res) => {
+        this.userDetails = res;
+        // ... Handle the response ...
+      },
+      error: (err) => {
+        // ... Handle the error ...
+      },
+      complete: () => {
+        // ... Handle the completion ...
       }
-    );
+    });
+
     this.fs.currentMessage.subscribe(message=>this.message=message);
     this.getRegusers();
   }
   getRegusers() {
     this.uservice.getuser().subscribe((res) => {
     this.users = res as Reguser[];
-    console.log(this.users);
     });
   }
 }

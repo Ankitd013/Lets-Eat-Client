@@ -11,28 +11,29 @@ import { Order } from '../../shared/order.model';
 export class BookhistoryComponent implements OnInit {
   public userDetails;
   public email = '';
-  public orders = [];
+  public orders:any = [];
   constructor(private userService:ReguserService, private orderservice: OrderService) { }
 
   ngOnInit() {
-    this.userService.getUserProfile().subscribe(
-      res => {
-        this.userDetails = res['reguser'];
+    this.userService.getUserProfile().subscribe({
+      next: (res) => {
+        this.userDetails = res;
         this.email = this.userDetails.email;
-         console.log(this.email);
-         this.getorder();
-      },
-      err => {
-        console.log(err);
 
+         this.getorder();
+        // ... Handle the response ...
+      },
+      error: (err) => {
+        // ... Handle the error ...
+      },
+      complete: () => {
+        // ... Handle the completion ...
       }
-    );
+    });
   }
   getorder() {
-    console.log(this.email);
      this.orderservice.getuserorder(this.email).subscribe((res) => {
       this.orders = res as Order[];
-      console.log(this.orders);
       });
 
   }

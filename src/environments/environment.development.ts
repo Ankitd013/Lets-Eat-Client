@@ -1,6 +1,6 @@
-const baseHost = 'https://lets-eat-server.clawiz.com';
+const baseHost = 'http://192.168.1.111:4167';
 export const environment = {
-    production: true,
+    production: false,
     apiBaseUrl: `${baseHost}/api`,
     BaseUrl: baseHost,
     URL: `${baseHost}/pics`,

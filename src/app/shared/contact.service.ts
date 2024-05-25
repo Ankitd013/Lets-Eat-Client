@@ -13,7 +13,7 @@ export class ContactService {
         _id:'',
         contactname: '',
         contactemail: '',
-        contactphone: null,
+        contactphone: 0,
         contactmessage:''
       };
 

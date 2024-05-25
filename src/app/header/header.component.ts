@@ -9,7 +9,7 @@ import { Category } from '../shared/categoty.model';
 })
 export class HeaderComponent implements OnInit {
   userDetails;
-  public category = [];
+  public category:any = [];
   public id = '';
   constructor(private router: Router, private catservice: CategoryService,
               private route: ActivatedRoute) { }

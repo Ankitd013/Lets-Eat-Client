@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router, ActivatedRoute} from '@angular/router';
 import { FoodService } from '../shared/food.service';
 import { Food } from '../shared/food.model';
-import { Category } from 'src/app/shared/categoty.model';
 declare var  require: any;
 import { environment } from '../../environments/environment';
 
@@ -16,10 +15,10 @@ export class AllfoodComponent implements OnInit {
   message:string;
 
   public apiurl = environment.BaseUrl;
-  public id = '';
+  public id:any = '';
   trustedUrl;
   count= 0;
-  public foods = [];
+  public foods: any = [];
   item= this.foods[0];
   constructor(private fservice: FoodService , public fs: FoodService,
     private sanitizer: DomSanitizer,private route: ActivatedRoute, private router: Router) {
@@ -40,13 +39,13 @@ this.fservice.changeMessage('Hello the message is changed');
       this.foods = res as Food[];
       });
   }
-  getSafeUrl(fpic) {
+
+  getSafeUrl(fpic : any):SafeUrl  {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.apiurl + '/' + fpic);
 }
   ngOnInit() {
     //this.fservice.currentMessage.subscribe(message=>this.message=message);
     this.id = this.route.snapshot.paramMap.get('id');
-    // console.log(this.id);
     this.getFood();
    // this.getFOoddetails(this.id);
 

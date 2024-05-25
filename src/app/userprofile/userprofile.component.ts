@@ -11,23 +11,25 @@ import {ReguserService} from '../shared/reguser.service';
 })
 export class UserprofileComponent implements OnInit {
   userDetails;
-  public category = [];
+  public category: Category[] = [];
   public id = '';
   constructor(private router: Router, private catservice: CategoryService, private userService: ReguserService,
     private route: ActivatedRoute) { }
   ngOnInit() {
-    this.userService.getUserProfile().subscribe(
-      res => {
-        this.userDetails = res['reguser'];
+    this.userService.getUserProfile().subscribe({
+      next: (res) => {
+        this.userDetails = res;
+        // ... Handle the response ...
       },
-      err => {
-        console.log(err);
-
+      error: (err) => {
+        // ... Handle the error ...
+      },
+      complete: () => {
+        // ... Handle the completion ...
       }
-    );
+    });
     this.getCategory();
     // this.id = this.route.snapshot.paramMap.get('id');
-    // console.log(this.id);
   }
   onclick() {
     this.router.navigateByUrl('/profile');

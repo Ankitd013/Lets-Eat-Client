@@ -14,8 +14,8 @@ import { NgForm } from '@angular/forms';
 })
 export class BookfoodComponent implements OnInit {
   userDetails;
-  public id = '';
-  public selectedFood = new Food();
+  public id:any = '';
+  public selectedFood = new Food("","","",0,"","",0);
   myDate = new Date();
   public mydate;
   constructor(private route: ActivatedRoute, private fservice: FoodService , private userService: ReguserService ,
@@ -24,35 +24,54 @@ export class BookfoodComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.userService.getUserProfile().subscribe(
-      res => {
-        this.userDetails = res['reguser'];
-        console.log(this.userDetails);
+    this.userService.getUserProfile().subscribe({
+      next: (res) => {
+        this.userDetails = res;
+        // ... Handle the response ...
       },
-      err => {
-        console.log(err);
-
+      error: (err) => {
+        // ... Handle the error ...
+      },
+      complete: () => {
+        // ... Handle the completion ...
       }
-    );
+    });
     this.id = this.route.snapshot.paramMap.get('id');
     this.getfood(this.id);
   }
   getfood(id) {
-    this.fservice.getfoodid(id).subscribe((res) => {
-      this.selectedFood = res as Food;
-      console.log(this.selectedFood);
-    }, (err) => {
-      console.log(err);
+    this.fservice.getfoodid(id).subscribe({
+      next: (res) => {
+        this.selectedFood = res as Food;
+        // ... Handle the response ...
+      },
+      error: (err) => {
+        // ... Handle the error ...
+      },
+      complete: () => {
+        // ... Handle the completion ...
+      }
     });
+
 
   }
   onSubmit(form: NgForm) {
     form.value.price = form.value.fprice * form.value.quan;
     form.value.date = this.mydate;
-    this.orderService.insertOrder(form.value).subscribe(
-      data => console.log('Success', data),
-      error => console.error('Error', error)
-    );
+    
+    this.orderService.insertOrder(form.value).subscribe({
+      next: (res) => {
+        console.log('Success', res)
+        // ... Handle the response ...
+      },
+      error: (err) => {
+        // ... Handle the error ...
+      },
+      complete: () => {
+        // ... Handle the completion ...
+      }
+    });
+
       alert('Your Booking is Confirmed');
       this.router.navigateByUrl('/-/bookinghistory');
   }

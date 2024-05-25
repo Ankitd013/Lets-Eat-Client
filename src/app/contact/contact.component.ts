@@ -10,8 +10,9 @@ import { NgForm } from '@angular/forms';
 export class ContactComponent implements OnInit {
   showSucessMessage: boolean;
   serverErrorMessages: string;
+emailRegex: string|RegExp;
 
-  constructor(private contactservice:ContactService) { }
+  constructor(public contactservice:ContactService) { }
 
   ngOnInit() {
   }
@@ -38,7 +39,7 @@ export class ContactComponent implements OnInit {
       _id:'',
       contactname: '',
       contactemail: '',
-      contactphone: null,
+      contactphone: 0,
       contactmessage:''
     };
     form.resetForm();
